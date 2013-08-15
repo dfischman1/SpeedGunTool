@@ -21,7 +21,7 @@ public class DisplayGraphActivity extends Activity {
         super.onCreate(savedInstanceState);
 
         ImageView image = new ImageView(this);
-        image.setImageResource(R.drawable.ic_launcher);
+        image.setImageResource(R.drawable.speedgun);
         setContentView(image);
         
     }

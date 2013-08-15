@@ -5,4 +5,5 @@
     <string name="average_speed">Average speed: </string>
     <string name="most_popular_speed">Most popular speed: </string>
     <string name="add_new_speed">Add new speed: </string>
+    <string name="title_activity_display_graph">Data Graph</string>
 </resources>
