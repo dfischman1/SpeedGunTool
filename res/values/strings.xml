@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Speed Gun Tool</string>
+    <string name="num_cars">Number of cars: </string>
+    <string name="average_speed">Average speed: </string>
+    <string name="most_popular_speed">Most popular speed: </string>
+    <string name="add_new_speed">Add new speed: </string>
+</resources>
