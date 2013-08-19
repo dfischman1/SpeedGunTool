@@ -2,17 +2,31 @@ package com.example.speedguntool;
 
 import android.app.Activity;
 import android.os.Bundle;
+//import android.os.Environment;
 import android.view.View;
-import android.widget.EditText;
+//import android.widget.EditText;
 import android.widget.TextView;
 import android.content.DialogInterface;
 import android.app.AlertDialog;
-import android.widget.ImageView;
+//import android.widget.ImageView;
 import android.content.Intent;
-
+/*
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.FileReader;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.util.Scanner;
+import java.util.List;
+import java.util.ArrayList;*/
 public class MainActivity extends Activity {
 
-    // Array of speed frequencies
+   // Array of speed frequencies
     int[] speeds;
     // Number of speeds
     int numSpeeds;
@@ -116,6 +130,11 @@ public class MainActivity extends Activity {
             // Start the new intent
             startActivity(intent);
             break;
+        case R.id.button_data:
+        	Intent data = new Intent(this, XYChartBuilder.class);
+            // Start the new intent
+            startActivity(data);
+            break;
         }
         
     }
@@ -136,5 +155,24 @@ public class MainActivity extends Activity {
             */
             .show();
     }
+    
 
+
+
+    
+    
+    
 }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
