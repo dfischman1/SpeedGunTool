@@ -10,6 +10,7 @@ import android.content.DialogInterface;
 import android.app.AlertDialog;
 //import android.widget.ImageView;
 import android.content.Intent;
+import android.widget.Toast;
 /*
 import java.io.FileReader;
 import java.io.IOException;
@@ -96,8 +97,12 @@ public class MainActivity extends Activity {
             int nextSpeed = Integer.parseInt(newSpeed);
             if (nextSpeed > (speeds.length - 1)) {
                 // Tell the user the speed is too high and don't do anything
-                alert("Invalid speed", "Only speeds within the range 0-" +
-                      (speeds.length - 1) + " are allowed");
+                Toast.makeText(getApplicationContext(),
+                               "Invalid speed: " + nextSpeed + "\nOnly " +
+                               "speeds within the range 0-" +
+                               (speeds.length - 1) + " are allowed",
+                               Toast.LENGTH_LONG)
+                    .show();
                 textbox.setText("");
                 break;
             }

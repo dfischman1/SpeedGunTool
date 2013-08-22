@@ -5,5 +5,5 @@
 [ ]Make the graph dynamically reflect the data put in
 [ ]Allow user to record (and write to the output file) the location, weather, etc. via an activity that appears before the data entry activity
 [ ]Add a "Vehicle Type" button? We can have three add buttons, each one for a specific vehicle. This would be instead of a seperate vehicle button.
-[ ]When an invalid speed is entered, have some toast pop up instead of a dialog box
+[*]When an invalid speed is entered, have some toast pop up instead of a dialog box
 [ ]Use trigonometry to calculate the actual speed of oncoming traffic, based on the user's measured speed and his/her angle with respect to traffic?
