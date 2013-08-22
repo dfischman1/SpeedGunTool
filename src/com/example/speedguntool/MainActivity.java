@@ -33,9 +33,8 @@ public class MainActivity extends Activity {
     int numSpeeds;
     // Average speed
     float averageSpeed;
-    // Most popular speed, and the number of times it's occurred
-    int mostPopularSpeed;
-    int numMostPopularSpeed;
+    int highestSpeed;
+    int numSpeeding;
     
     /** Called when the activity is first created. */
     @Override
@@ -47,7 +46,8 @@ public class MainActivity extends Activity {
         speeds = new int[80];
         numSpeeds = 0;
         averageSpeed = 0;
-        numMostPopularSpeed = 0;
+        highestSpeed = 0;
+        numSpeeding = 0;
 
     }
 
@@ -109,9 +109,11 @@ public class MainActivity extends Activity {
             
             // Update the data
             speeds[nextSpeed]++;
-            if (numMostPopularSpeed < speeds[nextSpeed]) {
-                numMostPopularSpeed = speeds[nextSpeed];
-                mostPopularSpeed = nextSpeed;
+            if (nextSpeed >= 30) {
+                numSpeeding++;
+            }
+            if (nextSpeed > highestSpeed) {
+                highestSpeed = nextSpeed;
             }
             averageSpeed = ((averageSpeed * numSpeeds) + nextSpeed) /
                            (numSpeeds + 1);
@@ -123,9 +125,13 @@ public class MainActivity extends Activity {
             ((TextView) findViewById(R.id.average_speed))
                 .setText(getString(R.string.average_speed) +
                          String.format("%.2f", averageSpeed));
-            ((TextView) findViewById(R.id.most_popular_speed))
-                .setText(getString(R.string.most_popular_speed) +
-                         mostPopularSpeed);
+            ((TextView) findViewById(R.id.percent_speeding))
+                .setText(getString(R.string.percent_speeding) +
+                         String.format("%.2f",
+                                       (float) 100 * numSpeeding / numSpeeds) +
+                         "%");
+            ((TextView) findViewById(R.id.highest_speed))
+                .setText(getString(R.string.highest_speed) + highestSpeed);
             textbox.setText("");
             break;
         case R.id.button_graph:

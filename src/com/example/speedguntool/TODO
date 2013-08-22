@@ -1,6 +1,6 @@
 [ ]Allow data to be exported to a CSV file (<speed>, <time recorded>)
 [*]Make text fields easier to read
-[ ]Consider adding / removing certain fields, e.g. adding "Highest speed" and "Percent speeding" or removing "Most popular speed"
+[*]Consider adding / removing certain fields, e.g. adding "Highest speed" and "Percent speeding" or removing "Most popular speed"
 [*]Add button to switch to displaying a graph in another Activity
 [ ]Make the graph dynamically reflect the data put in
 [ ]Allow user to record (and write to the output file) the location, weather, etc. via an activity that appears before the data entry activity

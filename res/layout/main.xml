@@ -17,11 +17,17 @@
       android:textSize="20dp"
       android:text="@string/average_speed" />
   <TextView
-      android:id="@+id/most_popular_speed"
+      android:id="@+id/percent_speeding"
       android:layout_width="fill_parent"
       android:layout_height="wrap_content"
       android:textSize="20dp"
-      android:text="@string/most_popular_speed" />
+      android:text="@string/percent_speeding" />
+  <TextView
+      android:id="@+id/highest_speed"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:textSize="20dp"
+      android:text="@string/highest_speed" />
   <LinearLayout
       android:orientation="horizontal"
       android:layout_width="fill_parent"
