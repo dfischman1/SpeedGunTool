@@ -155,11 +155,6 @@ public class MainActivity extends Activity {
                 .setText(getString(R.string.highest_speed) + highestSpeed);
             textbox.setText("");
             break;
-        case R.id.button_graph:
-            Intent intent = new Intent(this, DisplayGraphActivity.class);
-            // Start the new intent
-            startActivity(intent);
-            break;
         case R.id.button_data:
         	Intent data = new Intent(this, XYChartBuilder.class);
             // Start the new intent
