@@ -41,7 +41,7 @@ public class MainActivity extends Activity {
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
+        setContentView(R.layout.new_survey);
 
         speeds = new int[80];
         numSpeeds = 0;
@@ -148,6 +148,12 @@ public class MainActivity extends Activity {
         
     }
 
+    public void startSurvey(View view) {
+
+        setContentView(R.layout.main);
+
+    }
+
     public void alert(String title, String msg) {
         new AlertDialog.Builder(this)
             .setTitle(title)
@@ -165,23 +171,4 @@ public class MainActivity extends Activity {
             .show();
     }
     
-
-
-
-    
-    
-    
 }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
