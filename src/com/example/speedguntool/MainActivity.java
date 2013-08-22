@@ -33,8 +33,12 @@ public class MainActivity extends Activity {
     int numSpeeds;
     // Average speed
     float averageSpeed;
+    // Highest speed
     int highestSpeed;
+    // Number of drivers speeding
     int numSpeeding;
+    // Number of cars, vans, and trucks/buses
+    int numCars, numVans, numTrucksBuses;
     
     /** Called when the activity is first created. */
     @Override
@@ -48,6 +52,9 @@ public class MainActivity extends Activity {
         averageSpeed = 0;
         highestSpeed = 0;
         numSpeeding = 0;
+        numCars = 0;
+        numVans = 0;
+        numTrucksBuses = 0;
 
     }
 
@@ -56,7 +63,8 @@ public class MainActivity extends Activity {
         TextView textbox = (TextView) findViewById(R.id.new_speed);
         String newSpeed = textbox.getText().toString();
 
-        switch (view.getId()) {
+        int viewID = view.getId();
+        switch (viewID) {
         case R.id.button1:
             textbox.setText(newSpeed + "1");
             break;
@@ -90,7 +98,9 @@ public class MainActivity extends Activity {
         case R.id.button_clear:
             textbox.setText("");
             break;
-        case R.id.button_add:
+        case R.id.button_add_car:
+        case R.id.button_add_van:
+        case R.id.button_add_truck_bus:
             if (newSpeed.equals("")) {
                 break;
             }
@@ -118,6 +128,17 @@ public class MainActivity extends Activity {
             averageSpeed = ((averageSpeed * numSpeeds) + nextSpeed) /
                            (numSpeeds + 1);
             numSpeeds++;
+
+            // Handle the different vehicle types
+            if (viewID == R.id.button_add_car) {
+                numCars++;
+            }
+            else if (viewID == R.id.button_add_van) {
+                numVans++;
+            }
+            else {
+                numTrucksBuses++;
+            }
             
             // Update the widgets
             ((TextView) findViewById(R.id.num_cars))
