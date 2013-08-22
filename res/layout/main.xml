@@ -8,16 +8,19 @@
       android:id="@+id/num_cars"
       android:layout_width="fill_parent"
       android:layout_height="wrap_content"
+      android:textSize="20dp"
       android:text="@string/num_cars" />
   <TextView
       android:id="@+id/average_speed"
       android:layout_width="fill_parent"
       android:layout_height="wrap_content"
+      android:textSize="20dp"
       android:text="@string/average_speed" />
   <TextView
       android:id="@+id/most_popular_speed"
       android:layout_width="fill_parent"
       android:layout_height="wrap_content"
+      android:textSize="20dp"
       android:text="@string/most_popular_speed" />
   <LinearLayout
       android:orientation="horizontal"
@@ -27,11 +30,13 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:textSize="20dp"
         android:text="@string/add_new_speed" />
     <TextView
         android:id="@+id/new_speed"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:textSize="20dp"
         android:layout_weight="1" />
   </LinearLayout>
   <LinearLayout

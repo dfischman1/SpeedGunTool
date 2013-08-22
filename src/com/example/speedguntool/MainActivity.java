@@ -48,8 +48,6 @@ public class MainActivity extends Activity {
         averageSpeed = 0;
         numMostPopularSpeed = 0;
 
-        ((TextView) findViewById(R.id.new_speed)).setTextSize(24);
-
     }
 
     public void buttonPress(View view) {
