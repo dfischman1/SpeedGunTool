@@ -27,7 +27,9 @@ import java.util.List;
 import java.util.ArrayList;*/
 public class MainActivity extends Activity {
 
-   // Array of speed frequencies
+    // String used to pass data between this activity and the grapher
+    public static final String DATA = "data";
+    // Array of speed frequencies
     int[] speeds;
     // Number of speeds
     int numSpeeds;
@@ -157,6 +159,7 @@ public class MainActivity extends Activity {
             break;
         case R.id.button_data:
         	Intent data = new Intent(this, XYChartBuilder.class);
+            data.putExtra(DATA, speeds);
             // Start the new intent
             startActivity(data);
             break;

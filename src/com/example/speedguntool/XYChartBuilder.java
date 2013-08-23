@@ -9,6 +9,7 @@ import org.achartengine.model.XYMultipleSeriesDataset;
 import org.achartengine.model.XYSeries;
 import org.achartengine.renderer.XYMultipleSeriesRenderer;
 import org.achartengine.renderer.XYSeriesRenderer;
+import org.achartengine.chart.BarChart.Type;
 
 import android.app.Activity;
 import android.graphics.Color;
@@ -19,6 +20,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+import android.content.Intent;
 
 public class XYChartBuilder extends Activity {
   /** The main dataset that includes all the series that go into a chart. */
@@ -29,14 +31,6 @@ public class XYChartBuilder extends Activity {
   private XYSeries mCurrentSeries;
   /** The most recently created renderer, customizing the current series. */
   private XYSeriesRenderer mCurrentRenderer;
-  /** Button for creating a new series of data. */
-  private Button mNewSeries;
-  /** Button for adding entered data to the current series. */
-  private Button mAdd;
-  /** Edit text field for entering the X value of the data to be added. */
-  private EditText mX;
-  /** Edit text field for entering the Y value of the data to be added. */
-  private EditText mY;
   /** The chart view that displays the data. */
   private GraphicalView mChartView;
 
@@ -66,11 +60,6 @@ public class XYChartBuilder extends Activity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.xy_chart);
 
-    // the top part of the UI components for adding new data points
-    mX = (EditText) findViewById(R.id.xValue);
-    mY = (EditText) findViewById(R.id.yValue);
-    mAdd = (Button) findViewById(R.id.add);
-
     // set some properties on the main renderer
     mRenderer.setApplyBackgroundColor(true);
     mRenderer.setBackgroundColor(Color.argb(100, 50, 50, 50));
@@ -78,58 +67,45 @@ public class XYChartBuilder extends Activity {
     mRenderer.setChartTitleTextSize(20);
     mRenderer.setLabelsTextSize(15);
     mRenderer.setLegendTextSize(15);
+    mRenderer.setXTitle("Speed");
+    mRenderer.setYTitle("Number of drivers");
     mRenderer.setMargins(new int[] { 20, 30, 15, 0 });
-    mRenderer.setZoomButtonsVisible(true);
+    //mRenderer.setZoomButtonsVisible(true);
     mRenderer.setPointSize(5);
 
-    // the button that handles the new series of data creation
-    mNewSeries = (Button) findViewById(R.id.new_series);
-    mNewSeries.setOnClickListener(new View.OnClickListener() {
-      public void onClick(View v) {
-        String seriesTitle = "Series " + (mDataset.getSeriesCount() + 1);
-        // create a new series of data
-        XYSeries series = new XYSeries(seriesTitle);
-        mDataset.addSeries(series);
-        mCurrentSeries = series;
-        // create a new renderer for the new series
-        XYSeriesRenderer renderer = new XYSeriesRenderer();
-        mRenderer.addSeriesRenderer(renderer);
-        // set some renderer properties
-        renderer.setPointStyle(PointStyle.CIRCLE);
-        renderer.setFillPoints(true);
-        renderer.setDisplayChartValues(true);
-        renderer.setDisplayChartValuesDistance(10);
-        mCurrentRenderer = renderer;
-        setSeriesWidgetsEnabled(true);
-        mChartView.repaint();
-      }
-    });
+    // Create a new series
+    String seriesTitle = "Drivers' speeds";
+    // create a new series of data
+    XYSeries series = new XYSeries(seriesTitle);
+    mDataset.addSeries(series);
+    mCurrentSeries = series;
+    // create a new renderer for the new series
+    XYSeriesRenderer renderer = new XYSeriesRenderer();
+    mRenderer.addSeriesRenderer(renderer);
+    // set some renderer properties
+    renderer.setPointStyle(PointStyle.CIRCLE);
+    renderer.setFillPoints(true);
+    //renderer.setDisplayChartValues(true);
+    //renderer.setDisplayChartValuesDistance(10);
+    mCurrentRenderer = renderer;
 
-    mAdd.setOnClickListener(new View.OnClickListener() {
-      public void onClick(View v) {
-        double x = 0;
-        double y = 0;
-        try {
-          x = Double.parseDouble(mX.getText().toString());
-        } catch (NumberFormatException e) {
-          mX.requestFocus();
-          return;
-        }
-        try {
-          y = Double.parseDouble(mY.getText().toString());
-        } catch (NumberFormatException e) {
-          mY.requestFocus();
-          return;
-        }
+    // Create the chart view
+    LinearLayout layout = (LinearLayout) findViewById(R.id.chart);
+    mChartView = ChartFactory.getBarChartView(this, mDataset, mRenderer, Type.DEFAULT);
+    layout.addView(mChartView, new LayoutParams(LayoutParams.FILL_PARENT,
+                                                LayoutParams.FILL_PARENT));
+
+    // Get the data from the data entry activity
+    Intent intent = getIntent();
+    int[] speeds = intent.getIntArrayExtra(MainActivity.DATA);
+
+    for (int i = 0; i < speeds.length; i++) {
         // add a new data point to the current series
-        mCurrentSeries.add(x, y);
-        mX.setText("");
-        mY.setText("");
-        mX.requestFocus();
-        // repaint the chart such as the newly added point to be visible
-        mChartView.repaint();
-      }
-    });
+        mCurrentSeries.add(i, speeds[i]);
+    }
+
+    mChartView.repaint();
+
   }
 
   @Override
@@ -160,21 +136,9 @@ public class XYChartBuilder extends Activity {
       });
       layout.addView(mChartView, new LayoutParams(LayoutParams.FILL_PARENT,
           LayoutParams.FILL_PARENT));
-      boolean enabled = mDataset.getSeriesCount() > 0;
-      setSeriesWidgetsEnabled(enabled);
     } else {
       mChartView.repaint();
     }
   }
 
-  /**
-   * Enable or disable the add data to series widgets
-   * 
-   * @param enabled the enabled state
-   */
-  private void setSeriesWidgetsEnabled(boolean enabled) {
-    mX.setEnabled(enabled);
-    mY.setEnabled(enabled);
-    mAdd.setEnabled(enabled);
-  }
 }
