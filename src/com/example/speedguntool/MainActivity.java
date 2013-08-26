@@ -29,6 +29,8 @@ public class MainActivity extends Activity {
 
     // String used to pass data between this activity and the grapher
     public static final String DATA = "data";
+    // String used to pass the most times any speed has occurred
+    public static final String MAX_FREQ = "max_freq";
     // Array of speed frequencies
     int[] speeds;
     // Number of speeds
@@ -41,6 +43,8 @@ public class MainActivity extends Activity {
     int numSpeeding;
     // Number of cars, vans, and trucks/buses
     int numCars, numVans, numTrucksBuses;
+    // Highest frequency any speed has occurred
+    int highestFreq;
     
     /** Called when the activity is first created. */
     @Override
@@ -57,6 +61,7 @@ public class MainActivity extends Activity {
         numCars = 0;
         numVans = 0;
         numTrucksBuses = 0;
+        highestFreq = 0;
 
     }
 
@@ -121,6 +126,9 @@ public class MainActivity extends Activity {
             
             // Update the data
             speeds[nextSpeed]++;
+            if (speeds[nextSpeed] > highestFreq) {
+                highestFreq = speeds[nextSpeed];
+            }
             if (nextSpeed >= 30) {
                 numSpeeding++;
             }
@@ -160,6 +168,7 @@ public class MainActivity extends Activity {
         case R.id.button_data:
         	Intent data = new Intent(this, XYChartBuilder.class);
             data.putExtra(DATA, speeds);
+            data.putExtra(MAX_FREQ, highestFreq);
             // Start the new intent
             startActivity(data);
             break;

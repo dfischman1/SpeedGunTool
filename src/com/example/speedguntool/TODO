@@ -2,7 +2,9 @@
 [*]Make text fields easier to read
 [*]Consider adding / removing certain fields, e.g. adding "Highest speed" and "Percent speeding" or removing "Most popular speed"
 [*]Add button to switch to displaying a graph in another Activity
-[ ]Make the graph dynamically reflect the data put in
+[*]Make the graph dynamically reflect the data put in
+[ ]Clean up dev environment
+[*]Prettify / format the graph
 [ ]Allow user to record (and write to the output file) the location, weather, etc. via an activity that appears before the data entry activity
 [*]Add a "Vehicle Type" button? We can have three add buttons, each one for a specific vehicle. This would be instead of a seperate vehicle button.
 [*]When an invalid speed is entered, have some toast pop up instead of a dialog box

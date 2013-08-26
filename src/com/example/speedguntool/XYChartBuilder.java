@@ -66,12 +66,21 @@ public class XYChartBuilder extends Activity {
     mRenderer.setAxisTitleTextSize(16);
     mRenderer.setChartTitleTextSize(20);
     mRenderer.setLabelsTextSize(15);
-    mRenderer.setLegendTextSize(15);
+    //mRenderer.setLegendTextSize(15);
+    mRenderer.setShowLegend(false);
+    mRenderer.setChartTitle("Speeding in this area");
     mRenderer.setXTitle("Speed");
     mRenderer.setYTitle("Number of drivers");
-    mRenderer.setMargins(new int[] { 20, 30, 15, 0 });
+    mRenderer.setMargins(new int[] { 40, 40, 20, 10 });
+    mRenderer.setZoomEnabled(false, false);
     //mRenderer.setZoomButtonsVisible(true);
     mRenderer.setPointSize(5);
+
+    Intent intent = getIntent();
+    int yAxisMax = intent.getIntExtra(MainActivity.MAX_FREQ, 1);
+    mRenderer.setYAxisMin(0);
+    mRenderer.setYAxisMax(yAxisMax);
+    mRenderer.setPanEnabled(false);
 
     // Create a new series
     String seriesTitle = "Drivers' speeds";
@@ -96,7 +105,6 @@ public class XYChartBuilder extends Activity {
                                                 LayoutParams.FILL_PARENT));
 
     // Get the data from the data entry activity
-    Intent intent = getIntent();
     int[] speeds = intent.getIntArrayExtra(MainActivity.DATA);
 
     for (int i = 0; i < speeds.length; i++) {
